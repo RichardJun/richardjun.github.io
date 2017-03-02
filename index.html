@@ -5,6 +5,7 @@
   <title>demo</title>
   <meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
   <style>
+    
     * {
       margin: 0;
       -webkit-text-size-adjust: none;
@@ -12,7 +13,7 @@
       -webkit-tap-highlight-color: transparent;
       -webkit-font-smoothing: antialiased !important;
       -webkit-touch-callout: none;
-      -webkit-user-select: none; 
+      -webkit-user-select: none;
     }
     a {
       text-decoration:none;
@@ -39,31 +40,46 @@
       clear: both;
     }
     .content {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      flex-wrap:wrap;
-      justify-content: center;
-      align-items: flex-start;
+      -ms-flex-wrap:wrap;
+          flex-wrap:wrap;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: start;
+          -ms-flex-align: start;
+              align-items: flex-start;
     }
     .cell {
-      width: 230px; 
+      width: 230px;
       height: 230px;
       margin:10px;
     }
     .cell a {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      flex-wrap:wrap;
-      justify-content: center;
-      align-items: center;
-      width: 230px; 
+      -ms-flex-wrap:wrap;
+          flex-wrap:wrap;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      width: 230px;
       height: 230px;
       color:#000;
       background-color: #ccc;
       border: 1px solid #000;
+      -webkit-transition: all 0.1s ease-out;
       transition: all 0.1s ease-out;
       font-size: 30px;
       font-weight: bold;
       text-align: center;
-    } 
+    }
     /*.cell a:hover {
       width: 220px; 
       height: 220px;
