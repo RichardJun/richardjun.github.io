@@ -71,14 +71,22 @@
               align-items: center;
       width: 230px;
       height: 230px;
-      color:#000;
-      background-color: #ccc;
-      border: 1px solid #000;
+      color:#fff;
+      /*border: 1px solid #000;*/
       -webkit-transition: all 0.1s ease-out;
       transition: all 0.1s ease-out;
       font-size: 30px;
       font-weight: bold;
       text-align: center;
+    }
+    .cell:nth-child(n+1) a {
+      background: #04be02;
+    }
+    .cell:nth-child(2n+1) a {
+      background: #CA4040;
+    }
+    .cell:nth-child(3n+1) a {
+      background: #4390EE;
     }
     /*.cell a:hover {
       width: 220px; 
