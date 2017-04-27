@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>getUserMedia，audio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    
+	<link rel="stylesheet" href="css/style.css">
+
+    <script src="js/vconsole.min.js" type="text/javascript"></script>
+    <script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>
+	<!-- ios不支持 -->
+</head>
+<body>
+
+
+Volume: <input type="range" id="volume" min="0" max="1" value=1 step=0.01>
+
+<script>
+if (!navigator.getUserMedia) {
+    navigator.getUserMedia = navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia;
+}
+navigator.getUserMedia({
+    audio: true
+}, function(stream) {
+    var ctx = new AudioContext();
+    var source = ctx.createMediaStreamSource(stream);
+    var dest = ctx.createMediaStreamDestination();
+    var gainNode = ctx.createGain();
+
+    source.connect(gainNode);
+    gainNode.connect(dest);
+    document.getElementById('volume').onchange = function() {
+        gainNode.gain.value = this.value; // Any number between 0 and 1.
+        console.log(gainNode.gain.value );
+    };
+    gainNode.gain.value = document.getElementById('volume').value;
+    
+    // Example: play the audio
+    // Or if you use WebRTC, use peerConnection.addStream(dest.stream);
+    new Audio(URL.createObjectURL(dest.stream)).play();
+
+    // Store the source and destination in a global variable
+    // to avoid losing the audio to garbage collection.
+    window.leakMyAudioNodes = [source, dest];
+}, function(e) {
+    alert(e); // TODO: Handle error.
+});
+
+// For the demo only:
+document.getElementById('volume').onchange = function() {
+    console.log('Please provide access to the microhone before using this.');
+};
+
+</script>
+
+</body>
+</html>
